@@ -4,6 +4,8 @@ import me.dragontos.extramentals.Commands.*;
 import me.dragontos.extramentals.Commands.basic.*;
 import me.dragontos.extramentals.Commands.basic.GodMode.GodMode;
 import me.dragontos.extramentals.Events.Announce.Diamond;
+import me.dragontos.extramentals.Events.Mobs.Creeper;
+import me.dragontos.extramentals.Events.fun.zombiekill;
 import me.dragontos.extramentals.Events.joined_leavedmessage;
 import me.dragontos.extramentals.Events.joinmessage;
 import org.bukkit.Bukkit;
@@ -49,6 +51,7 @@ public final class Extramentals extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new joined_leavedmessage(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new joinmessage(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new Diamond(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new Creeper(), this);
 //        Bukkit.getServer().getPluginManager().registerEvents(new EXAMenuEvents(),this);
 //        Bukkit.getServer().getPluginManager().registerEvents(new grassinteractmessage(), this);
 //        Bukkit.getServer().getPluginManager().registerEvents(new zombiekill(), this);
