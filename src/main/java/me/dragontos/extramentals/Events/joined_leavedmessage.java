@@ -13,10 +13,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class joined_leavedmessage implements Listener {
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player p = event.getPlayer();
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        Scoreboard.setupScoreboard(e.getPlayer());
+        Player p = e.getPlayer();
         Location loc = p.getLocation();
-        event.setJoinMessage("§7[§a+§7]§6 " + p.getDisplayName() + " §6joined the server! ");
+        e.setJoinMessage("§7[§a+§7]§6 " + p.getDisplayName() + " §6joined the server! ");
         p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_CHIME, 5, 5);
         p.sendTitle(new Title(ChatColor.BLUE + "Welcome " + p.getDisplayName()));
     }

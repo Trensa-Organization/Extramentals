@@ -1,4 +1,4 @@
-package me.dragontos.extramentals.Commands;
+package me.dragontos.extramentals.Commands.basic;
 
 import me.dragontos.extramentals.Extramentals;
 import org.bukkit.ChatColor;
@@ -12,7 +12,7 @@ public class Discord implements CommandExecutor {
     @Override
     public boolean onCommand( CommandSender sdr,  Command cmd,  String str,  String[] args) {
 
-        if (cmd.getName().equalsIgnoreCase("discord"))
+        if (cmd.getName().equalsIgnoreCase("discord") || cmd.getName().equalsIgnoreCase("dc"))
             sdr.sendMessage(" ");
             sdr.sendMessage("§8§m+-----------=*§c§9Discord Invite§8§m*=-----------+");
             sdr.sendMessage("");

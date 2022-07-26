@@ -8,8 +8,7 @@ commands:
       hello:
       bye:
   Discord:
-    subcommands:
-      dc:
+  Dc:
   Gui:
   gmc:
   gms:

@@ -5,11 +5,12 @@ import me.dragontos.extramentals.Commands.basic.*;
 import me.dragontos.extramentals.Commands.basic.GodMode.GodMode;
 import me.dragontos.extramentals.Events.Announce.Diamond;
 import me.dragontos.extramentals.Events.Mobs.Creeper;
-import me.dragontos.extramentals.Events.fun.zombiekill;
+import me.dragontos.extramentals.Events.Scoreboard;
 import me.dragontos.extramentals.Events.joined_leavedmessage;
 import me.dragontos.extramentals.Events.joinmessage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Extramentals extends JavaPlugin {
@@ -31,6 +32,7 @@ public final class Extramentals extends JavaPlugin {
         //Set's up Commands = CMD
         SetupCommands();
         //set's up Listeners = LTR
+        SetupTimer();
         SetupListeners();
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage(GREEN + "tr.Extramentals Enabled!!" + WHITE + " >> " + GRAY + "Coded by DRAGONTOS");
@@ -60,6 +62,7 @@ public final class Extramentals extends JavaPlugin {
     private void SetupCommands() {
         this.getCommand("Extramentals").setExecutor(new ExtramentalsCommands());
         this.getCommand("discord").setExecutor(new Discord());
+        this.getCommand("dc").setExecutor(new Discord());
         this.getCommand("gui").setExecutor(new ExtramentalsMenu());
         this.getCommand("gmc").setExecutor(new Gamemode());
         this.getCommand("gms").setExecutor(new Gamemode());
@@ -71,6 +74,12 @@ public final class Extramentals extends JavaPlugin {
         this.getCommand("god").setExecutor(new GodMode());
         this.getCommand("day").setExecutor(new DayNight());
         this.getCommand("night").setExecutor(new DayNight());
+    }
+
+    private void SetupTimer() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            Scoreboard.setupScoreboard(p);
+        }
     }
 
     @Override

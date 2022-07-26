@@ -17,8 +17,8 @@ Jm-Row7:  ' '
 Jm-Row8: §8§m+-----------=* §9§l=+=*-==-*=+=§8§m *=-----------+
 Jm-Row9: ' '
 ##
-Diamond-Error: FCK YOU
-Diamond-Nice: NOICE
+Diamond-Error: §cHey don't break that Diamond!
+Diamond-Nice: §bHey you found Diamond Good Job!
 ##
 gms: '§6You have bean set into GameMode: §f0'
 gmc: '§6You have bean set into GameMode: §f1'
@@ -30,4 +30,20 @@ heal: '§6You have bean Healed.'
 feed: '§6You are now well Fed.'
 daymsg: '§6Set time to Day'
 nightmsg: '§6Set time to Night'
-creeperkill: '§cGood job kill that MTF.'
+creeperkill: '§cNice! kill that MTF.'
+##
+Scoreboard-title: '§9Meadows §cTest'
+Line1: '    '
+Line2: '§7• §6Player:'
+Line3: '  §f%player_name%'
+Line4: '   '
+Line5: '§7• §6Rank:'
+Line6: '  §f%vault_rank%'
+Line7: '  '
+Line8: '§7• §6Region:'
+Line9: '  §f%worldguard_region_name_capitalized%'
+Line10: ' '
+Line11: '§7• §6Date:'
+Line12: '  §f%localtime_time%'
+Line13: ''
+Line14: §8play.meadowsnetwork.tk
