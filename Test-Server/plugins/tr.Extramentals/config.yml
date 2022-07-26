@@ -1,0 +1,39 @@
+prefix: '§7[§fTR§7] '
+link: https://discord.gg/WnfcY5EhjW
+Jm-Row1: ' '
+Jm-Row2: §8§m+---------------=*§c§9Welkom§8§m*=---------------+
+Jm-Row3: ' '
+Jm-Row4: §7Welkom op §9Meadows §4TESTING§7!
+Jm-Row5: ' '
+Jm-Row6: §7Voor de Discord link /discord (THIS IS JUST AN TEST SO NO WORKY)
+Jm-Row7: ' '
+Jm-Row8: §8§m+-----------=* §9§l=+=*-==-*=+=§8§m *=-----------+
+Jm-Row9: ' '
+Diamond-Error: §cHey don't break that Diamond!
+Diamond-Nice: §bHey you found Diamond Good Job!
+gms: '§6You have bean set into GameMode: §f0'
+gmc: '§6You have bean set into GameMode: §f1'
+gma: '§6You have bean set into GameMode: §f2'
+gmsp: '§6You have bean set into GameMode: §f3'
+flyon: §6Flight has bean Enabled.
+flyoff: §6Flight has bean Disabled.
+heal: §6You have bean Healed.
+feed: §6You are now well Fed.
+daymsg: §6Set time to Day
+nightmsg: §6Set time to Night
+creeperkill: §cNice! kill that MTF.
+Scoreboard-title: §9Meadows §cTest
+Line1: '    '
+Line2: '§7• §6Player:'
+Line3: '  §f%player_name%'
+Line4: '   '
+Line5: '§7• §6Rank:'
+Line6: '  §f%vault_rank%'
+Line7: '  '
+Line8: '§7• §6Region:'
+Line9: '  §f%worldguard_region_name_capitalized%'
+Line10: ' '
+Line11: '§7• §6Date:'
+Line12: '  §f%localtime_time%'
+Line13: ''
+Line14: §8play.meadowsnetwork.tk
