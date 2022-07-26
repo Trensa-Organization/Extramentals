@@ -1,11 +1,8 @@
 package me.dragontos.extramentals;
 
 import me.dragontos.extramentals.Commands.*;
-import me.dragontos.extramentals.Commands.basic.Feed;
-import me.dragontos.extramentals.Commands.basic.Fly;
-import me.dragontos.extramentals.Commands.basic.Gamemode;
+import me.dragontos.extramentals.Commands.basic.*;
 import me.dragontos.extramentals.Commands.basic.GodMode.GodMode;
-import me.dragontos.extramentals.Commands.basic.Heal;
 import me.dragontos.extramentals.Events.Announce.Diamond;
 import me.dragontos.extramentals.Events.joined_leavedmessage;
 import me.dragontos.extramentals.Events.joinmessage;
@@ -17,6 +14,7 @@ public final class Extramentals extends JavaPlugin {
 
     private static Extramentals plugin;
 
+    //ChatColor's
     ChatColor GREEN = ChatColor.GREEN;
     ChatColor WHITE = ChatColor.WHITE;
     ChatColor GRAY = ChatColor.GRAY;
@@ -68,6 +66,8 @@ public final class Extramentals extends JavaPlugin {
         this.getCommand("heal").setExecutor(new Heal());
         this.getCommand("Feed").setExecutor(new Feed());
         this.getCommand("god").setExecutor(new GodMode());
+        this.getCommand("day").setExecutor(new DayNight());
+        this.getCommand("night").setExecutor(new DayNight());
     }
 
     @Override
