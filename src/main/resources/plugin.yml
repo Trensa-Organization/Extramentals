@@ -2,6 +2,7 @@ name: tr.Extramentals
 version: '${project.version}'
 main: me.dragontos.extramentals.Extramentals
 api-version: 1.15
+depends: [PlaceholderAPI]
 commands:
   Extramentals:
     subcommands:
@@ -20,4 +21,6 @@ commands:
   god:
   day:
   night:
+  ec:
+  enderchest:
 

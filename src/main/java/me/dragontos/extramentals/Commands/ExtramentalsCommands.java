@@ -14,25 +14,12 @@ public class ExtramentalsCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
-        Extramentals.getPlugin();
-        if (cmd.getName().equalsIgnoreCase("Extramentals")) {
-
-        }
-        if (args[0].equalsIgnoreCase("help")) {
-            sdr.sendMessage("");
-            sdr.sendMessage("§8§m+---------------=*§c§9WHelp§8§m*=---------------+");
-            sdr.sendMessage("");
-            sdr.sendMessage("");
-            sdr.sendMessage(Extramentals.getPlugin().getConfig().getString("link"));
-            sdr.sendMessage("");
-            sdr.sendMessage("");
-            sdr.sendMessage("§8§m+-----------=* §9§l=+=*-==-*=+=§8§m *=-----------+");
-            sdr.sendMessage("");
-
-        }
-        if (args[0].equalsIgnoreCase("bye")) {
-            sdr.sendMessage("BYE.... FACKER!!!");
-        }
+                if (cmd.getName().equalsIgnoreCase(   "Extramentals")) {
+                    sdr.sendMessage("1");
+                    return false;
+                } else if (args [0].equalsIgnoreCase("awd")) {
+                    sdr.sendMessage("2");
+                }
         return false;
     }
 }

@@ -1,25 +1,21 @@
-
+#awd
 prefix: "§7[§fTR§7] "
-##Discord
-link: https://discord.gg/WnfcY5EhjW
-##
-##
-##
-##
-#Join Message
+#add
+link: §4ERROR
+#awdawd
 Jm-Row1:  ' '
-Jm-Row2: §8§m+---------------=*§c§9Welkom§8§m*=---------------+
+Jm-Row2: §8§m+---------------=*§c§9Welcome§8§m*=---------------+
 Jm-Row3:  ' '
-Jm-Row4: §7Welkom op §9Meadows §4TESTING§7!
+Jm-Row4: §7Welcome to §9Meadows §aNetwork§7!
 Jm-Row5:  ' '
-Jm-Row6: §7Voor de Discord link /discord (THIS IS JUST AN TEST SO NO WORKY)
+Jm-Row6: §7For the Discord link use /dc
 Jm-Row7:  ' '
 Jm-Row8: §8§m+-----------=* §9§l=+=*-==-*=+=§8§m *=-----------+
 Jm-Row9: ' '
-##
+#awdawdd
 Diamond-Error: §cHey don't break that Diamond!
 Diamond-Nice: §bHey you found Diamond Good Job!
-##
+#awdwd
 gms: '§6You have bean set into GameMode: §f0'
 gmc: '§6You have bean set into GameMode: §f1'
 gma: '§6You have bean set into GameMode: §f2'
@@ -30,9 +26,12 @@ heal: '§6You have bean Healed.'
 feed: '§6You are now well Fed.'
 daymsg: '§6Set time to Day'
 nightmsg: '§6Set time to Night'
-creeperkill: '§cNice! kill that MTF.'
-##
-Scoreboard-title: '§9Meadows §cTest'
+creeperkill: §cNice! kill that MTF.
+Joinmsg: '§7[§a+§7]§6 %luckperms_suffix%%player_name% §6joined the server! '
+Quitmsg: '§7[§c-§7]§6 %luckperms_suffix%%player_name% §6leaved the server! '
+WelcomeTitle: '§9Welcome %luckperms_suffix%%player_name%'
+#awdawd
+Scoreboard-title: '§9Meadows §aNetwork'
 Line1: '    '
 Line2: '§7• §6Player:'
 Line3: '  §f%player_name%'

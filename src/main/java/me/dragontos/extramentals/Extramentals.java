@@ -11,6 +11,7 @@ import me.dragontos.extramentals.Events.joinmessage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Extramentals extends JavaPlugin {
@@ -24,7 +25,6 @@ public final class Extramentals extends JavaPlugin {
     ChatColor RED = ChatColor.RED;
 
 
-    @Override
     public void onEnable() {
         plugin = this;
         //Set's up Config = CFG
@@ -35,9 +35,8 @@ public final class Extramentals extends JavaPlugin {
         SetupTimer();
         SetupListeners();
         Bukkit.getConsoleSender().sendMessage("");
-        Bukkit.getConsoleSender().sendMessage(GREEN + "tr.Extramentals Enabled!!" + WHITE + " >> " + GRAY + "Coded by DRAGONTOS");
+        Bukkit.getConsoleSender().sendMessage("§7[§fTR§7] §a§lExtramentals enabled! §f|§r §6Coded by DRAGONTOS §f| §6Version " + this.getDescription().getVersion());
         Bukkit.getConsoleSender().sendMessage("");
-
         // Plugin startup logic
 
     }
@@ -74,6 +73,8 @@ public final class Extramentals extends JavaPlugin {
         this.getCommand("god").setExecutor(new GodMode());
         this.getCommand("day").setExecutor(new DayNight());
         this.getCommand("night").setExecutor(new DayNight());
+        this.getCommand("ec").setExecutor(new Enderchest());
+        this.getCommand("enderchest").setExecutor(new Enderchest());
     }
 
     private void SetupTimer() {
@@ -82,10 +83,9 @@ public final class Extramentals extends JavaPlugin {
         }
     }
 
-    @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage("");
-        Bukkit.getConsoleSender().sendMessage(RED + "tr.Extramentals Enabled!!" + WHITE + " >> " + GRAY + "Coded by DRAGONTOS");
+        Bukkit.getConsoleSender().sendMessage("§7[§fTR§7] §c§lExtramentals disabled! §f|§r §6Coded by DRAGONTOS §f| §6Version " + this.getDescription().getVersion());
         Bukkit.getConsoleSender().sendMessage("");
 
         // Plugin shutdown logic

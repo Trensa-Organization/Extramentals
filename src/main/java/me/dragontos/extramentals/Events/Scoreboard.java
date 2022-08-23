@@ -4,6 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.dragontos.extramentals.Extramentals;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -33,36 +34,20 @@ public class Scoreboard {
         org.bukkit.scoreboard.Scoreboard b = m.getNewScoreboard();
         Objective o = b.registerNewObjective("test", "dummy", Extramentals.getPlugin().getConfig().getString("Scoreboard-title"));
         o.setDisplaySlot(DisplaySlot.SIDEBAR);
-
-        Score sc = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line1")));
-        Score sc2 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line2")));
-        Score sc3 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line3")));
-        Score sc4 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line4")));
-        Score sc5 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line5")));
-        Score sc6 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line6")));
-        Score sc7 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line7")));
-        Score sc8 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line8")));
-        Score sc9 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line9")));
-        Score sc10 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line10")));
-        Score sc11 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line11")));
-        Score sc12 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line12")));
-        Score sc13 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line13")));
-        Score sc14 = o.getScore(PlaceholderAPI.setPlaceholders(
-                p, Extramentals.getPlugin().getConfig().getString("Line14")));
-
+        Score sc = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line1")));
+        Score sc2 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line2")));
+        Score sc3 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line3")));
+        Score sc4 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line4")));
+        Score sc5 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line5")));
+        Score sc6 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line6")));
+        Score sc7 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line7")));
+        Score sc8 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line8")));
+        Score sc9 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line9")));
+        Score sc10 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line10")));
+        Score sc11 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line11")));
+        Score sc12 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line12")));
+        Score sc13 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line13")));
+        Score sc14 = o.getScore(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Line14")));
         sc.setScore(14);
         sc2.setScore(13);
         sc3.setScore(12);
@@ -77,7 +62,6 @@ public class Scoreboard {
         sc12.setScore(3);
         sc13.setScore(2);
         sc14.setScore(1);
-
         p.setScoreboard(b);
     }
 }

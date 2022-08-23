@@ -1,6 +1,8 @@
 package me.dragontos.extramentals.Events;
 
 import com.destroystokyo.paper.Title;
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.dragontos.extramentals.Extramentals;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -17,12 +19,12 @@ public class joined_leavedmessage implements Listener {
         Scoreboard.setupScoreboard(e.getPlayer());
         Player p = e.getPlayer();
         Location loc = p.getLocation();
-        e.setJoinMessage("§7[§a+§7]§6 " + p.getDisplayName() + " §6joined the server! ");
+        e.setJoinMessage(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Joinmsg")));
         p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_CHIME, 5, 5);
-        p.sendTitle(new Title(ChatColor.BLUE + "Welcome " + p.getDisplayName()));
+        p.sendTitle(new Title(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("WelcomeTitle"))));
     }
     public void onPlayerLeave(PlayerQuitEvent event) {
         Player p = event.getPlayer();
-        event.setQuitMessage("§7[§c-§7]§6 " + p.getDisplayName() + " §6leaved the server! ");
+        event.setQuitMessage(PlaceholderAPI.setPlaceholders(p, Extramentals.getPlugin().getConfig().getString("Quitmsg")));
     }
 }
