@@ -25,4 +25,4 @@ We have added a command and fixed PlaceholderAPI.
  * Add Help Menu
  * Make Clean Config
  * Add Custom Chat System
-
+ * Add AutoRestart
