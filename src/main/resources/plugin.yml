@@ -1,5 +1,5 @@
 name: tr.Extramentals
-version: '${project.version}'
+version: 0.0.2
 main: me.dragontos.extramentals.Extramentals
 api-version: 1.15
 depends: [PlaceholderAPI]
