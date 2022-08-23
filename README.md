@@ -4,7 +4,7 @@
 to make a Essentials Alt.
 
 ## Update Log
-### Tweaks & Updated to 1.19! (v0.0.1)
+### Tweaks & Updated to 1.19! (v0.0.2)
 We have added a command and fixed PlaceholderAPI.
 
 ## Contributors
