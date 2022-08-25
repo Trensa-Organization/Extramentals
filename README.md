@@ -5,13 +5,13 @@ to make a Essentials Alt.
 
 ## Update Log
 ### BugFixes & Updates! (v0.0.3)
+* Fixed Command Errors
 * Fixed Quit Message
 * Fixed Spelling Mistakes
-* Fixed Command Errors
-* Added Points System
-* Added Heal Others
 * Added Feed Others
 * Added GM (number)
+* Added Heal Others
+* Added Points System
 * Made "&" Equal to "§"
 
 ### Tweaks & Updated to 1.19! (v0.0.2)
