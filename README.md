@@ -12,7 +12,7 @@ to make a Essentials Alt.
 * Added Heal Others
 * Added Feed Others
 * Added GM (number)
-* Made & Equal to §
+* Made "&" Equal to "§"
 
 ### Tweaks & Updated to 1.19! (v0.0.2)
 We have added a command and fixed PlaceholderAPI.
