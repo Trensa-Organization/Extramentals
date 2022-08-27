@@ -1,5 +1,6 @@
 package me.dragontos.extramentals.Commands.basic;
 
+import me.dragontos.extramentals.EXAConfigManager;
 import me.dragontos.extramentals.Extramentals;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,28 +20,37 @@ public class Heal implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
+        //prefix
+        String prefix = EXAConfigManager.Prefix.getString("prefix");
+        //extra
+        String needtobeplayer = EXAConfigManager.Messages.getString("needtobeplayer");
+        String subpermission = EXAConfigManager.Messages.getString("subpermission");
+        String heal = EXAConfigManager.Messages.getString("heal");
+        String healther = EXAConfigManager.Messages.getString("healother");
+
         if(!(sdr instanceof Player)) {
-            sdr.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")+
-                    Extramentals.getPlugin().getConfig().getString("needtobeplayer")));
+            sdr.sendMessage(Color(prefix
+                    + needtobeplayer));
         }
         Player p = (Player) sdr;
         if(!p.hasPermission("Extramentals.Commands.Basic.Heal")) {
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")+
-                    Extramentals.getPlugin().getConfig().getString("subpermission")));
+            p.sendMessage(Color(prefix
+                    + subpermission));
         }
         if(args.length == 0) {
             p.setHealth(20);
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")+
-                    Extramentals.getPlugin().getConfig().getString("heal")));
+            p.sendMessage(Color(prefix
+                    + heal));
         }
         if(args.length == 1) {
             Player target = Bukkit.getPlayer(args[0]);
             if(target != null){
                 target.setHealth(20);
-                target.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")+
-                        Extramentals.getPlugin().getConfig().getString("heal")));
-                p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")+target.getDisplayName()+
-                        Extramentals.getPlugin().getConfig().getString("healother")));
+                target.sendMessage(Color(prefix
+                        + heal));
+                p.sendMessage(Color(prefix
+                        +target.getDisplayName()
+                        + healther));
             }
         }
 

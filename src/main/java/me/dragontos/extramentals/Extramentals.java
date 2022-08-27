@@ -5,12 +5,17 @@ import me.dragontos.extramentals.Commands.basic.*;
 import me.dragontos.extramentals.Commands.basic.GodMode.GodMode;
 import me.dragontos.extramentals.Events.*;
 import me.dragontos.extramentals.Events.Announce.Diamond;
+import me.dragontos.extramentals.Events.SimplePoints.Config.SimplePointsConfig;
+import me.dragontos.extramentals.Events.SimplePoints.getplayerpoints;
+import me.dragontos.extramentals.Events.SimplePoints.SimplePoints;
+import me.dragontos.extramentals.Timer.Config.ScoreboardConfig;
 import me.dragontos.extramentals.Timer.Scoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 public final class Extramentals extends JavaPlugin {
 
@@ -24,13 +29,19 @@ public final class Extramentals extends JavaPlugin {
 
 
     public void onEnable() {
+        SimplePointsConfig.baseMobPoints(this);
+        ScoreboardConfig.baseScoreboard(this);
+        EXAConfigManager.basePrefix(this);
+        EXAConfigManager.baseMessages(this);
+        EXAConfigManager.baseDiscordLink(this);
+        EXAConfigManager.basehelpmsg(this);
+        EXAConfigManager.baseinfomsg(this);
+        EXAConfigManager.baseWelcomemsg(this);
         plugin = this;
         //Set's up Config = CFG
         SetupConfig();
         //Set's up Commands = CMD
         SetupCommands();
-        PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new SimplePoints(this), this);
         //set's up Listeners = LTR
         SetupTimer();
         SetupListeners();
@@ -49,6 +60,9 @@ public final class Extramentals extends JavaPlugin {
 
     // = LTR
     private void SetupListeners() {
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new SimplePoints(this), this);
+        pm.registerEvents(new ChatSystem(this), this);
         Bukkit.getServer().getPluginManager().registerEvents(new joined_message(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new quit_message(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new joinmessage(), this);
@@ -62,7 +76,8 @@ public final class Extramentals extends JavaPlugin {
         new Heal(this);
         new Feed(this);
         new Fly(this);
-        this.getCommand("Extramentals").setExecutor(new ExtramentalsCommands());
+        new getplayerpoints(this);
+        new ExtramentalsCMD(this);
         this.getCommand("gms").setExecutor(new gms());
         this.getCommand("gmc").setExecutor(new gms());
         this.getCommand("gma").setExecutor(new gms());

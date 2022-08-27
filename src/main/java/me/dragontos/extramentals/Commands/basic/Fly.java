@@ -1,5 +1,6 @@
 package me.dragontos.extramentals.Commands.basic;
 
+import me.dragontos.extramentals.EXAConfigManager;
 import me.dragontos.extramentals.Extramentals;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -21,19 +22,36 @@ public class Fly implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String srt, String[] args) {
         Player player = (Player) sdr;
+        //prefix
+        String prefix = EXAConfigManager.Prefix.getString("prefix");
+        //extra
+        String needtobeplayer = EXAConfigManager.Messages.getString("needtobeplayer");
+        String subpermission = EXAConfigManager.Messages.getString("subpermission");
+        String flyon = EXAConfigManager.Messages.getString("flyon");
+        String flyoff = EXAConfigManager.Messages.getString("flyoff");
+
+
         if(cmd.getName().equalsIgnoreCase("fly")){
+            if(!(sdr instanceof Player)) {
+                sdr.sendMessage(Color(prefix
+                + needtobeplayer));
+                return false;
+            }
             if(!sdr.hasPermission("pluginname.fly")){
-                sdr.sendMessage(Color(pl.getConfig().getString("prefix") + pl.getConfig().getString("subpermission")));
+                sdr.sendMessage(Color(prefix
+                        + subpermission));
                 return true;
             }
 
             if(!player.getAllowFlight()){
-                sdr.sendMessage(Color(pl.getConfig().getString("prefix") + pl.getConfig().getString("flyon")));
+                sdr.sendMessage(Color(prefix
+                        + flyon));
                 player.setAllowFlight(true);
                 return true;
             }
             player.setAllowFlight(false);
-            sdr.sendMessage(Color(pl.getConfig().getString("prefix") + pl.getConfig().getString("flyoff")));
+            sdr.sendMessage(Color(prefix
+                    + flyoff));
             return true;
         }
         return true;

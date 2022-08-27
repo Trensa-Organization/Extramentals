@@ -1,63 +1,89 @@
 package me.dragontos.extramentals;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
 import java.io.File;
-import java.io.IOException;
 
 public class EXAConfigManager {
 
-    private Extramentals plugin = Extramentals.getPlugin(Extramentals.class);
+    public static File PrefixFile;
+    public static FileConfiguration Prefix;
+    public static File MessagesFile;
+    public static FileConfiguration Messages;
+    public static File DiscordLinkFile;
+    public static FileConfiguration DiscordLink;
+    public static File HelpmsgFile;
+    public static FileConfiguration Helpmsg;
+    public static File InfomsgFile;
+    public static FileConfiguration Infomsg;
+    public static File WelcomemsgFile;
+    public static FileConfiguration Welcomemsg;
 
-    //Files & File Configs Here
-    public FileConfiguration discordcfg;
-    public File discord;
-    //-------------------------------------
-
-    public void setup() {
-        if (!plugin.getDataFolder().exists()) {
-            plugin.getDataFolder().mkdir();
+    public static void basePrefix(Extramentals pr) {
+        if (!pr.getDataFolder().exists()) {
+            pr.getDataFolder().mkdirs();
         }
 
-        discord = new File(plugin.getDataFolder(), "discord.yml");
-
-        if (discord.exists()) {
-            try {
-                discord.createNewFile();
-                Bukkit.getServer().getConsoleSender()
-                        .sendMessage(ChatColor.GREEN + "The discord.yaml has been created");
-            } catch (IOException e) {
-                Bukkit.getServer().getConsoleSender()
-                        .sendMessage(ChatColor.RED + "Could not create the discord.yml file");
-            }
+        PrefixFile = new File(pr.getDataFolder(), "Messages/Prefix.yml");
+        if (!PrefixFile.exists()) {
+            pr.saveResource("Messages/Prefix.yml", false);
+        }
+        Prefix = YamlConfiguration.loadConfiguration(PrefixFile);
+    }
+    public static void baseMessages(Extramentals msg) {
+        if (!msg.getDataFolder().exists()) {
+            msg.getDataFolder().mkdirs();
         }
 
-        discordcfg = YamlConfiguration.loadConfiguration(discord);
-    }
-
-    public FileConfiguration getDiscordcfg() {
-        return discordcfg;
-    }
-
-    public  void saveDiscord(){
-        try{
-            discordcfg.save(discord);
-            Bukkit.getServer().getConsoleSender()
-                    .sendMessage(ChatColor.GREEN + "The discord.yaml file been saved");
-        }catch(IOException e){
-            Bukkit.getServer().getConsoleSender()
-                    .sendMessage(ChatColor.RED + "Could not save discord.yml file");
-
+        MessagesFile = new File(msg.getDataFolder(), "Messages/Messages.yml");
+        if (!MessagesFile.exists()) {
+            msg.saveResource("Messages/Messages.yml", false);
         }
+        Messages = YamlConfiguration.loadConfiguration(MessagesFile);
     }
+    public static void baseDiscordLink(Extramentals DCLink) {
+        if (!DCLink.getDataFolder().exists()) {
+            DCLink.getDataFolder().mkdirs();
+        }
 
-    public void reloadDiscord(){
-        discordcfg = YamlConfiguration.loadConfiguration(discord);
-        Bukkit.getServer().getConsoleSender()
-                .sendMessage(ChatColor.GREEN + "The discord.yaml file been reloaded");
+        DiscordLinkFile = new File(DCLink.getDataFolder(), "data/DiscordLink.yml");
+        if (!DiscordLinkFile.exists()) {
+            DCLink.saveResource("data/DiscordLink.yml", false);
+        }
+        DiscordLink = YamlConfiguration.loadConfiguration(DiscordLinkFile);
+    }
+    public static void basehelpmsg(Extramentals hpmsg) {
+        if (!hpmsg.getDataFolder().exists()) {
+            hpmsg.getDataFolder().mkdirs();
+        }
 
+        HelpmsgFile = new File(hpmsg.getDataFolder(), "data/Helpmsg.yml");
+        if (!HelpmsgFile.exists()) {
+            hpmsg.saveResource("data/Helpmsg.yml", false);
+        }
+        Helpmsg = YamlConfiguration.loadConfiguration(HelpmsgFile);
+    }
+    public static void baseinfomsg(Extramentals infomsg) {
+        if (!infomsg.getDataFolder().exists()) {
+            infomsg.getDataFolder().mkdirs();
+        }
+
+        InfomsgFile = new File(infomsg.getDataFolder(), "data/Infomsg.yml");
+        if (!InfomsgFile.exists()) {
+            infomsg.saveResource("data/Infomsg.yml", false);
+        }
+        Infomsg = YamlConfiguration.loadConfiguration(InfomsgFile);
+    }
+    public static void baseWelcomemsg(Extramentals Welcmsg) {
+        if (!Welcmsg.getDataFolder().exists()) {
+            Welcmsg.getDataFolder().mkdirs();
+        }
+
+        WelcomemsgFile = new File(Welcmsg.getDataFolder(), "data/Welcomemsg.yml");
+        if (!WelcomemsgFile.exists()) {
+            Welcmsg.saveResource("data/Welcomemsg.yml", false);
+        }
+        Welcomemsg = YamlConfiguration.loadConfiguration(WelcomemsgFile);
     }
 }
+

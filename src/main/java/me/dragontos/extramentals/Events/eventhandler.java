@@ -1,4 +1,4 @@
-package me.dragontos.extramentals.Events;
+package me.dragontos.extramentals.Events;        //prefix
 
 import me.dragontos.extramentals.Extramentals;
 import org.bukkit.event.Listener;

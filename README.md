@@ -1,9 +1,23 @@
-# Extramentals
+![Logo](https://user-images.githubusercontent.com/46651680/187038507-fc196c66-f554-436f-846b-7a718e92ae50.png)
 
 ## Project Purpose
 to make a Essentials Alt.
 
 ## Update Log
+###  Big Update! (v0.0.4)
+* Added Broadcast when Boss is killed
+* Added Custom Chat System
+* Added Help Command
+* Added Info Command
+* Added Logo/Banner
+* Added Multiple Configs
+* Added PAPI to Maven
+* Updated API
+* Updated mob list
+* Made Points System more readable
+* Fixed a bug with SimplePoints System
+* Fixed Formatting
+
 ### BugFixes & Updates! (v0.0.3)
 * Fixed Command Errors
 * Fixed Quit Message
@@ -20,17 +34,19 @@ We have added a command and fixed PlaceholderAPI.
 ## Contributors
 - DRAGONTOS
 
+## Quick Links
+- https://github.com/DRAGONTOS/Extramentals/wiki 
+- https://github.com/DRAGONTOS/Extramentals/wiki/Level-System
+
 ## Goals
  * Add Gamemode switch others
- * Add Multiple Configs
  * Add Wiki
  * Add Project to Spigot/Paper
  * Add Tablist
  * Add Plugin Hide
- * Add Help Command
  * Add Help Menu
- * Add Custom Chat System
  * Add AutoRestart
+ * Add Points Stats
  * Make Clean Config
- * Make Banners/Logo
  * Make Sponge Compatible 
+ * Make Target player set PAPI

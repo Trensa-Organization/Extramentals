@@ -1,5 +1,6 @@
 package me.dragontos.extramentals.Commands.basic;
 
+import me.dragontos.extramentals.EXAConfigManager;
 import me.dragontos.extramentals.Extramentals;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -15,56 +16,64 @@ public class Gm implements CommandExecutor {
         this.pl = pl;
         pl.getCommand("gm").setExecutor(this);
     }
-    public static Extramentals plugin;
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
+        Player p = (Player) sdr;
+        //prefix
+        String prefix = EXAConfigManager.Messages.getString("prefix");
+        //extra
+        String needtobeplayer = EXAConfigManager.Messages.getString("needtobeplayer");
+        String subpermission = EXAConfigManager.Messages.getString("subpermission");
+        String help = EXAConfigManager.Messages.getString("help");
+        String gms = EXAConfigManager.Messages.getString("gms");
+        String gmc = EXAConfigManager.Messages.getString("gmc");
+        String gma = EXAConfigManager.Messages.getString("gma");
+        String gmsp = EXAConfigManager.Messages.getString("gmsp");
+
         if(!(sdr instanceof Player)) {
-            sdr.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("needtobeplayer")));
+            sdr.sendMessage(Color(prefix
+                    +needtobeplayer));
             return false;
         }
-        Player p = (Player) sdr;
         if(!p.hasPermission("Extramentals.Commands.Basic.Gamemode")) {
-            sdr.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("subpermission")));
+            sdr.sendMessage(Color(prefix
+                    +subpermission));
             return false;
         }
 
         if(args.length == 0) {
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("help")));
+            p.sendMessage(Color(prefix
+                    +help));
             return false;
         }
 
         if(args[0].equalsIgnoreCase("0")) {
             p.setGameMode(GameMode.SURVIVAL);
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("gms")));
+            p.sendMessage(Color(prefix
+                    +gms));
             return false;
         }
 
         if(args[0].equalsIgnoreCase("1")) {
             p.setGameMode(GameMode.CREATIVE);
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("gmc")));
+            p.sendMessage(Color(prefix
+                    +gmc));
             return false;
         }
 
         if(args[0].equalsIgnoreCase("2")) {
             p.setGameMode(GameMode.ADVENTURE);
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("gma")));
+            p.sendMessage(Color(prefix
+                    +gma));
             return false;
         }
 
         if(args[0].equalsIgnoreCase("3")) {
             p.setGameMode(GameMode.SPECTATOR);
-            p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                    +Extramentals.getPlugin().getConfig().getString("gmsp")));
+            p.sendMessage(Color(prefix
+                    +gmsp));
             return false;
         }
-
-
         return false;
     }
     private String Color(String str) {
