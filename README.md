@@ -4,29 +4,51 @@
 to make a Essentials Alt.
 
 ## Update Log
+###  Revived The Project!! (v0.0.5)
+
+### New Features:
+* Introduced weather control command
+
+### Updates:
+* Improved SimplePoints
+* Returned :3
+
+### Bug Fixes:
+* Replaced all instances of '&' with '§'
+
 ###  Big Update! (v0.0.4)
-* Added Broadcast when Boss is killed
-* Added Custom Chat System
-* Added Help Command
-* Added Info Command
-* Added Logo/Banner
-* Added Multiple Configs
-* Added PAPI to Maven
-* Updated API
-* Updated mob list
-* Made Points System more readable
-* Fixed a bug with SimplePoints System
-* Fixed Formatting
+
+#### New Features:
+* Broadcast when Boss is killed
+* Custom Chat System
+* Help Command
+* Info Command
+* Logo/Banner
+* Multiple Configs
+* PAPI integration to Maven
+
+#### Updates:
+* API
+* Mob list
+* Improved Points System readability
+
+#### Bug Fixes:
+* Bug with SimplePoints System
+* Formatting issues
 
 ### BugFixes & Updates! (v0.0.3)
-* Fixed Command Errors
-* Fixed Quit Message
-* Fixed Spelling Mistakes
-* Added Feed Others
-* Added GM (number)
-* Added Heal Others
-* Added Points System
-* Made "&" Equal to "§"
+
+#### New Features:
+* Feed Others
+* GM (number)
+* Heal Others
+* Points System
+* "&" now equals "§"
+
+#### Bug Fixes:
+* Command Errors
+* Quit Message
+* Spelling Mistakes
 
 ### Tweaks & Updated to 1.19! (v0.0.2)
 We have added a command and fixed PlaceholderAPI.
