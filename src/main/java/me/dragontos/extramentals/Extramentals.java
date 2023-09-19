@@ -83,8 +83,13 @@ public final class Extramentals extends JavaPlugin {
         this.getCommand("gma").setExecutor(new gms());
         this.getCommand("gmsp").setExecutor(new gms());
         this.getCommand("god").setExecutor(new GodMode());
+        // Sets the Time of day
         this.getCommand("day").setExecutor(new DayNight());
         this.getCommand("night").setExecutor(new DayNight());
+        // Sets weather conditions
+        this.getCommand("sun").setExecutor(new DayNight());
+        this.getCommand("rain").setExecutor(new DayNight());
+        this.getCommand("thunder").setExecutor(new DayNight());
     }
 
     private void SetupTimer() {

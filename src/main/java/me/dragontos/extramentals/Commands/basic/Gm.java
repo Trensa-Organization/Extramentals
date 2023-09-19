@@ -20,7 +20,7 @@ public class Gm implements CommandExecutor {
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
         Player p = (Player) sdr;
         //prefix
-        String prefix = EXAConfigManager.Messages.getString("prefix");
+        String prefix = EXAConfigManager.Prefix.getString("prefix");
         //extra
         String needtobeplayer = EXAConfigManager.Messages.getString("needtobeplayer");
         String subpermission = EXAConfigManager.Messages.getString("subpermission");

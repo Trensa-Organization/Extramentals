@@ -14,6 +14,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.util.HashMap;
+
 public class SimplePoints implements Listener {
 
     static Extramentals pl;
@@ -42,7 +45,7 @@ public class SimplePoints implements Listener {
             xpUUID = p.getUniqueId().toString();
             Location loc = p.getLocation();
             int xp = Extramentals.getPlugin().getConfig().getInt("Players." + xpUUID + ".Points");
-            //Prefix
+            //Prefix/announce
             String prefix = EXAConfigManager.Prefix.getString("prefix");
             String announce = EXAConfigManager.Prefix.getString("announce");
             //mobs
@@ -126,589 +129,103 @@ public class SimplePoints implements Listener {
             String castwarden = SimplePointsConfig.MobPoints.getString("castwarden");
             String castwither = SimplePointsConfig.MobPoints.getString("castwither");
 
-            if(e.getEntityType().equals(EntityType.ALLAY)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 300);
-                p.sendMessage(Color(prefix
-                        + allay));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
+            HashMap<EntityType, Integer> entityPoints = new HashMap<>();
+            entityPoints.put(EntityType.ALLAY, 300);
+            entityPoints.put(EntityType.AXOLOTL, 40);
+            entityPoints.put(EntityType.BAT, 10);
+            entityPoints.put(EntityType.BEE, 60);
+            entityPoints.put(EntityType.BLAZE, 350);
+            entityPoints.put(EntityType.CAT, 60);
+            entityPoints.put(EntityType.CAVE_SPIDER, 280);
+            entityPoints.put(EntityType.CHICKEN, 10);
+            entityPoints.put(EntityType.COD, 40);
+            entityPoints.put(EntityType.COW, 60);
+            entityPoints.put(EntityType.CREEPER, 200);
+            entityPoints.put(EntityType.DOLPHIN, 60);
+            entityPoints.put(EntityType.DONKEY, 60);
+            entityPoints.put(EntityType.DROWNED, 160);
+            entityPoints.put(EntityType.ENDERMAN, 300);
+            entityPoints.put(EntityType.ENDERMITE, 300);
+            entityPoints.put(EntityType.EVOKER, 200);
+            entityPoints.put(EntityType.FOX, 60);
+            entityPoints.put(EntityType.FROG, 60);
+            entityPoints.put(EntityType.GHAST, 2000);
+            entityPoints.put(EntityType.GLOW_SQUID, 120);
+            entityPoints.put(EntityType.GUARDIAN, 160);
+            entityPoints.put(EntityType.HORSE, 60);
+            entityPoints.put(EntityType.HUSK, 100);
+            entityPoints.put(EntityType.LLAMA, 70);
+            entityPoints.put(EntityType.MAGMA_CUBE, 200);
+            entityPoints.put(EntityType.MUSHROOM_COW, 60);
+            entityPoints.put(EntityType.MULE, 60);
+            entityPoints.put(EntityType.OCELOT, 60);
+            entityPoints.put(EntityType.PANDA, 280);
+            entityPoints.put(EntityType.PHANTOM, 100);
+            entityPoints.put(EntityType.PIG, 60);
+            entityPoints.put(EntityType.PIGLIN, 120);
+            entityPoints.put(EntityType.PIGLIN_BRUTE, 800);
+            entityPoints.put(EntityType.PILLAGER, 120);
+            entityPoints.put(EntityType.POLAR_BEAR, 280);
+            entityPoints.put(EntityType.PUFFERFISH, 70);
+            entityPoints.put(EntityType.RABBIT, 40);
+            entityPoints.put(EntityType.SALMON, 40);
+            entityPoints.put(EntityType.SHEEP, 40);
+            entityPoints.put(EntityType.SHULKER, 140);
+            entityPoints.put(EntityType.SILVERFISH, 60);
+            entityPoints.put(EntityType.SKELETON, 250);
+            entityPoints.put(EntityType.SKELETON_HORSE, 360);
+            entityPoints.put(EntityType.SLIME, 180);
+            entityPoints.put(EntityType.SPIDER, 140);
+            entityPoints.put(EntityType.SQUID, 80);
+            entityPoints.put(EntityType.STRAY, 270);
+            entityPoints.put(EntityType.STRIDER, 160);
+            entityPoints.put(EntityType.TADPOLE, 40);
+            entityPoints.put(EntityType.TRADER_LLAMA, 160);
+            entityPoints.put(EntityType.TROPICAL_FISH, 50);
+            entityPoints.put(EntityType.TURTLE, 60);
+            entityPoints.put(EntityType.VEX, 200);
+            entityPoints.put(EntityType.VILLAGER, 60);
+            entityPoints.put(EntityType.VINDICATOR, 160);
+            entityPoints.put(EntityType.WANDERING_TRADER, 70);
+            entityPoints.put(EntityType.WITCH, 270);
+            entityPoints.put(EntityType.WITHER_SKELETON, 320);
+            entityPoints.put(EntityType.WOLF, 70);
+            entityPoints.put(EntityType.ZOGLIN, 300);
+            entityPoints.put(EntityType.ZOMBIE, 100);
+            entityPoints.put(EntityType.ZOMBIE_HORSE, 120);
+            entityPoints.put(EntityType.ZOMBIE_VILLAGER, 100);
+            entityPoints.put(EntityType.ZOMBIFIED_PIGLIN, 150);
+            entityPoints.put(EntityType.PARROT, 40);
+
+            HashMap<EntityType, Integer> entityPointsboss = new HashMap<>();
+            entityPointsboss.put(EntityType.WITHER, 50000);
+            entityPointsboss.put(EntityType.WARDEN, 200000);
+            entityPointsboss.put(EntityType.ENDER_DRAGON, 500000);
+            entityPointsboss.put(EntityType.ELDER_GUARDIAN, 25000);
+            entityPointsboss.put(EntityType.RAVAGER, 10000);
+
+// Check if the entity type is in the map and update points accordingly
+            // normal
+            if (entityPoints.containsKey(e.getEntityType())) {
+                int newPoints = xp + entityPoints.get(e.getEntityType());
+                pl.getConfig().set("Players." + xpUUID + ".Points", newPoints);
+                p.sendMessage(Color(prefix + entityPoints.get(e.getEntityType())));
+                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 1);
                 Extramentals.getPlugin().saveConfig();
                 return;
             }
-            if(e.getEntityType().equals(EntityType.AXOLOTL)) {
-                Extramentals.getPlugin().getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + axolotl));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.BAT)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 10);
-                p.sendMessage(Color(Extramentals.getPlugin().getConfig().getString("prefix")
-                        + Extramentals.getPlugin().getConfig().getString("BAT")));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.BEE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + bee));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.BLAZE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 350);
-                p.sendMessage(Color(prefix
-                        + blaze));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.CAT)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + cat));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.CAVE_SPIDER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 280);
-                p.sendMessage(Color(prefix
-                        + cave_spider));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.CHICKEN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 10);
-                p.sendMessage(Color(prefix
-                        + chicken));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.COD)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + cod));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.COW)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + cow));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.CREEPER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 200);
-                p.sendMessage(Color(prefix
-                        + creeper));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.DOLPHIN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + dolphin));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.DONKEY)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + donkey));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.DROWNED)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 160);
-                p.sendMessage(Color(prefix
-                        + drowned));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ELDER_GUARDIAN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 10000);
-                Bukkit.broadcastMessage(Color(PlaceholderAPI.setPlaceholders(p,announce
-                        + castelder_guardian)));
-                p.sendMessage(Color(announce
-                        + elder_guardian));
+
+            // broadcast version
+            if (entityPointsboss.containsKey(e.getEntityType())) {
+                int newPoints = xp + entityPointsboss.get(e.getEntityType());
+                pl.getConfig().set("Players." + xpUUID + ".Points", newPoints);
+                p.sendMessage(Color(prefix + entityPointsboss.get(e.getEntityType())));
                 p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ENDERMAN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 300);
-                p.sendMessage(Color(prefix
-                        + enderman));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ENDER_DRAGON)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 50000);
-                Bukkit.broadcastMessage(Color(PlaceholderAPI.setPlaceholders(p,announce
-                        + castender_dragon)));
-                p.sendMessage(Color(prefix
-                        + ender_dragon));
-                p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ENDERMITE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 300);
-                p.sendMessage(Color(prefix
-                        + endermite));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.EVOKER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 200);
-                p.sendMessage(Color(prefix
-                        + evoker));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.FOX)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + fox));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.FROG)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + frog));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.GHAST)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 5000);
-                Bukkit.broadcastMessage(Color(PlaceholderAPI.setPlaceholders(p,announce
-                        + castghast)));
-                p.sendMessage(Color(prefix
-                        + ghast));
-                p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.GLOW_SQUID)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 120);
-                p.sendMessage(Color(prefix
-                        + glow_squid));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.GUARDIAN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 160);
-                p.sendMessage(Color(prefix
-                        + guardian));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.HORSE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + horse));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.HUSK)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 100);
-                p.sendMessage(Color(prefix
-                        + husk));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.LLAMA)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 70);
-                p.sendMessage(Color(prefix
-                        + llama));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.MAGMA_CUBE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 200);
-                p.sendMessage(Color(prefix
-                        + magma_cube));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.MUSHROOM_COW)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + mushroom_cow));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.MULE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + mule));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.OCELOT)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + ocelot));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PANDA)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 280);
-                p.sendMessage(Color(prefix
-                        + panda));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PHANTOM)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 100);
-                p.sendMessage(Color(prefix
-                        + phantom));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PIG)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + pig));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PIGLIN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 120);
-                p.sendMessage(Color(prefix
-                        + piglin));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PIGLIN_BRUTE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 800);
-                Bukkit.broadcastMessage(Color(PlaceholderAPI.setPlaceholders(p,announce
-                        + castpiglin_brute)));
-                p.sendMessage(Color(prefix
-                        + piglin_brute));
-                p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PILLAGER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 120);
-                p.sendMessage(Color(prefix
-                        + pillager));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.POLAR_BEAR)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 280);
-                p.sendMessage(Color(prefix
-                        + polar_bear));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PUFFERFISH)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 70);
-                p.sendMessage(Color(prefix
-                        + pufferfish));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.RABBIT)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + rabbit));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.RAVAGER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 320);
-                p.sendMessage(Color(prefix
-                        + ravager));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SALMON)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + salmon));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SHEEP)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + sheep));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SHULKER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 140);
-                p.sendMessage(Color(prefix
-                        + shulker));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SILVERFISH)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + silverfish));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SKELETON)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 250);
-                p.sendMessage(Color(prefix
-                        + skeleton));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SKELETON_HORSE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 360);
-                p.sendMessage(Color(prefix
-                        + skeleton_horse));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SLIME)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 180);
-                p.sendMessage(Color(prefix
-                        + slime));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SPIDER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 140);
-                p.sendMessage(Color(prefix
-                        + spider));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.SQUID)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 80);
-                p.sendMessage(Color(prefix
-                        + squid));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.STRAY)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 270);
-                p.sendMessage(Color(prefix
-                        + stray));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.STRIDER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 160);
-                p.sendMessage(Color(prefix
-                        + strider));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.TADPOLE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + tadpole));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.TRADER_LLAMA)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 160);
-                p.sendMessage(Color(prefix
-                        + trader_llama));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.TROPICAL_FISH)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 50);
-                p.sendMessage(Color(prefix
-                        + tropical_fish));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.TURTLE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + turtle));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.VEX)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 200);
-                p.sendMessage(Color(prefix
-                        + vex));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.VILLAGER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 60);
-                p.sendMessage(Color(prefix
-                        + villager));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.VINDICATOR)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 160);
-                p.sendMessage(Color(prefix
-                        + vindicator));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.WANDERING_TRADER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 70);
-                p.sendMessage(Color(prefix
-                        + wandering_trader));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.WARDEN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 20000);
-                Bukkit.broadcastMessage(Color(PlaceholderAPI.setPlaceholders(p,announce
-                        + castwarden)));
-                p.sendMessage(Color(prefix
-                        + warden));
-                p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.WITCH)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 270);
-                p.sendMessage(Color(prefix
-                        + witch));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.WITHER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 20000);
-                Bukkit.broadcastMessage(Color(PlaceholderAPI.setPlaceholders(p,announce
-                        + castwither)));
-                p.sendMessage(Color(prefix
-                        + wither));
-                p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.WITHER_SKELETON)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 320);
-                p.sendMessage(Color(prefix
-                        + wither_skeleton));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.WOLF)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 70);
-                p.sendMessage(Color(prefix
-                        + wolf));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ZOGLIN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 300);
-                p.sendMessage(Color(prefix
-                        + zoglin));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ZOMBIE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 100);
-                p.sendMessage(Color(prefix
-                        + zombie));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ZOMBIE_HORSE)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 120);
-                p.sendMessage(Color(prefix
-                        + zombie_horse));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ZOMBIE_VILLAGER)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 100);
-                p.sendMessage(Color(prefix
-                        + zombie_villager));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.ZOMBIFIED_PIGLIN)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 150);
-                p.sendMessage(Color(prefix
-                        + zombifiedPiglin));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
-                Extramentals.getPlugin().saveConfig();
-                return;
-            }
-            if(e.getEntityType().equals(EntityType.PARROT)) {
-                pl.getConfig().set("Players." + xpUUID + ".Points", xp + 40);
-                p.sendMessage(Color(prefix
-                        + parrot));
-                p.playSound(loc, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5,  1);
                 Extramentals.getPlugin().saveConfig();
                 return;
             }
             Extramentals.getPlugin().saveConfig();
         }
-
     }
     private String Color(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);

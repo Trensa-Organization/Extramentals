@@ -1,4 +1,4 @@
-name: tr.Extramentals
+name: Extramentals
 version: ${project.version}
 main: me.dragontos.extramentals.Extramentals
 api-version: 1.19
@@ -22,6 +22,9 @@ commands:
   god:
   day:
   night:
+  sun:
+  rain:
+  thunder:
   ec:
   enderchest:
   points:

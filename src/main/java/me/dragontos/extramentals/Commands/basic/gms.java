@@ -13,7 +13,7 @@ public class gms implements CommandExecutor {
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
         Player p = (Player) sdr;
 
-        String prefix = EXAConfigManager.Messages.getString("prefix");
+        String prefix = EXAConfigManager.Prefix.getString("prefix");
         String needtobeplayer = EXAConfigManager.Messages.getString("needtobeplayer");
         String subpermission = EXAConfigManager.Messages.getString("subpermission");
         String help = EXAConfigManager.Messages.getString("help");
