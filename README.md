@@ -12,9 +12,12 @@ to make a Essentials Alt.
 ### Updates:
 * Improved SimplePoints
 * Returned :3
+* Removed Unnecessary Branding
+* 
 
 ### Bug Fixes:
 * Replaced all instances of '&' with '§'
+* Fixed Some Broken 
 
 ###  Big Update! (v0.0.4)
 
