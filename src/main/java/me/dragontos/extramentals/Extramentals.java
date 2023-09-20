@@ -9,7 +9,9 @@ import me.dragontos.extramentals.Events.SimplePoints.Config.SimplePointsConfig;
 import me.dragontos.extramentals.Events.SimplePoints.getplayerpoints;
 import me.dragontos.extramentals.Events.SimplePoints.SimplePoints;
 import me.dragontos.extramentals.Timer.Config.ScoreboardConfig;
+import me.dragontos.extramentals.Timer.Config.TablistConfig;
 import me.dragontos.extramentals.Timer.Scoreboard;
+import me.dragontos.extramentals.Timer.Tablist;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -31,6 +33,7 @@ public final class Extramentals extends JavaPlugin {
     public void onEnable() {
         SimplePointsConfig.baseMobPoints(this);
         ScoreboardConfig.baseScoreboard(this);
+        TablistConfig.baseTablist(this);
         EXAConfigManager.basePrefix(this);
         EXAConfigManager.baseMessages(this);
         EXAConfigManager.baseDiscordLink(this);
@@ -95,6 +98,9 @@ public final class Extramentals extends JavaPlugin {
     private void SetupTimer() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             Scoreboard.setupScoreboard(p);
+        }
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            Tablist.setupTablist(p);
         }
     }
 

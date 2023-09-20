@@ -1,0 +1,28 @@
+# What is displayed as someone's name in the Tablist
+Suffix: '§7[§r%luckperms_prefix%§7]§r %player_name%'
+
+# This is to specified how mush headers you want
+# (If you have specified 2 you can only use 2)
+Header-Total: 2
+Header1: '§9Extramentals'
+Header2: '§6----------------'
+Header3: ''
+Header4: ''
+Header5: ''
+Header6: ''
+Header7: ''
+Header8: ''
+Header9: ''
+
+# This is to specified how mush footers you want
+# (If you have specified 2 you can only use 2)
+Footer-Total: 2
+Footer1: '§6----------------'
+Footer2: '§9play.yourserver.xyz'
+Footer3: ''
+Footer4: ''
+Footer5: ''
+Footer6: ''
+Footer7: ''
+Footer8: ''
+Footer9: ''

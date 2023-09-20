@@ -3,7 +3,7 @@ package me.dragontos.extramentals.Events;
 import com.destroystokyo.paper.Title;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.dragontos.extramentals.EXAConfigManager;
-import me.dragontos.extramentals.Extramentals;
+import me.dragontos.extramentals.Timer.Tablist;
 import me.dragontos.extramentals.Timer.Scoreboard;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -18,6 +18,7 @@ public class joined_message implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Scoreboard.setupScoreboard(e.getPlayer());
+        Tablist.setupTablist(e.getPlayer());
         Player p = e.getPlayer();
         Location loc = p.getLocation();
         //extra
