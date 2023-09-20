@@ -13,7 +13,6 @@ to make a Essentials Alt.
 * Improved SimplePoints
 * Returned :3
 * Removed Unnecessary Branding
-* 
 
 ### Bug Fixes:
 * Replaced all instances of '&' with '§'
