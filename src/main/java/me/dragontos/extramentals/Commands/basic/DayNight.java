@@ -10,6 +10,10 @@ import org.bukkit.entity.Player;
 public class DayNight implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
+        if (!(sdr instanceof Player)) {
+            sdr.sendMessage("This command can only be run by players.");
+            return false;
+        }
         Player p = (Player) sdr;
         //prefix
         String prefix = EXAConfigManager.Prefix.getString("prefix");

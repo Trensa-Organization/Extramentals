@@ -20,6 +20,10 @@ public class getplayerpoints implements CommandExecutor {
     }
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
+        if (!(sdr instanceof Player)) {
+            sdr.sendMessage("This command can only be run by players.");
+            return false;
+        }
         Player p = (Player) sdr;
         String xpUUID = p.getUniqueId().toString();
         int points = pl.getConfig().getInt("Players." + xpUUID + ".Points");

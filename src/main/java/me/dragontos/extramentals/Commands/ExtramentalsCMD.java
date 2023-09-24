@@ -22,6 +22,10 @@ public class ExtramentalsCMD implements CommandExecutor {
     }
     @Override
     public boolean onCommand(CommandSender sdr, Command cmd, String str, String[] args) {
+        if (!(sdr instanceof Player)) {
+            sdr.sendMessage("This command can only be run by players.");
+            return false;
+        }
         Player p = (Player) sdr;
         //Gets config String.
         String prefix = EXAConfigManager.Prefix.getString("prefix");
@@ -56,9 +60,14 @@ public class ExtramentalsCMD implements CommandExecutor {
         String ExtraInfoRow4 = EXAConfigManager.Infomsg.getString("ExtraInfo-Row4");
         String ExtraInfoRow5 = EXAConfigManager.Infomsg.getString("ExtraInfo-Row5");
         String ExtraInfoRow6 = EXAConfigManager.Infomsg.getString("ExtraInfo-Row6");
-        String ExtraInfoRow7 = EXAConfigManager.Infomsg.getString("ExtraInfo-Row7");
+        String ExtraInfoRow7 = EXAConfigManager.Infomsg.getString("ExtraInfo-Row8");
         String ExtraInfoRow8 = EXAConfigManager.Infomsg.getString("ExtraInfo-Row8");
+        String needtobeplayer = EXAConfigManager.Messages.getString("needtobeplayer");
 
+        if(!(p instanceof Player)) {
+            p.sendMessage(needtobeplayer);
+            return false;
+        }
         if(args.length == 0) {
             p.sendMessage(Color(prefix)
                     +help);
